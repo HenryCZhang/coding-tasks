@@ -9,7 +9,42 @@
 
 [dataset](./updated_pollution_dataset.csv)
 
-### App Packaging
+### App Testing 
+
+#### 1. Unpack the tar file
+
+```bash
+tar -xvf aqc.tar.gz
+```
+
+#### 2. Build an image
+
+```shell
+cd aqc
+docker build -t evaluation/aqc .
+```
+
+#### 3. Start docker service:
+
+```shell
+cd docker
+docker compose up -d
+```
+#### 4. Visit the Web Interface
+
+👉 http://localhost:1111/aqc
+
+<p align="center">
+  <img src="https://github.com/HenryCZhang/coding-tasks/blob/main/air-quality-classification/README%20images/aqc%20form.png"  width="400" alt="aqc form">
+</p>
+
+#### 5. Stop the App When You're Done
+
+```bash
+docker compose down
+```
+
+### App Packaging (Development)
 
 #### 1. Pull the required python image
 (in aqc directory)
@@ -47,27 +82,4 @@ cd ../../
 tar -czvf aqc.tar.gz aqc/
 ```
 
-### App Testing
 
-#### 1. Unpack the tar file
-
-```bash
-tar -xvf aqc.tar.gz
-```
-
-#### 2. Build an image
-
-```shell
-cd aqc
-docker build -t evaluation/aqc .
-```
-
-#### 3. Start docker service:
-
-```shell
-cd docker
-docker compose up -d
-```
-#### 4. Visit the Web Interface
-
-👉 http://localhost:1111/aqc
