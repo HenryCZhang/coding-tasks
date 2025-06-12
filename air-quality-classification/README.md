@@ -1,40 +1,73 @@
-#### Task description
+### Task description
 
 1. Prediction of air quality (Good/Moderate/Hazardous/Poor) based on the data of the given weather indicators (Temperature/Humidity/PM2.5/PM10/NO2/SO2/CO/Proximity to Industrial Areas/Population Density).
 2. Give the model training code (Python 3.11), and the trained model.
 3. Support with docker image build and `docker compose up` one click to start the backend service (Python 3.11).
 4. You can use the browser to open the page and then enter the value of each indicator (allowed to be empty), submit and return to the prediction results.
 
-#### Dataset
+### Dataset
 
-You need to use following [dataset](./updated_pollution_dataset.csv) to train your model.
+[dataset](./updated_pollution_dataset.csv)
 
-#### Submission
+### App Packaging
 
-You need to package your submission into `aqc.tar.gz` and send it to `kai.hu@infiniflow.ai`.
+#### 1. Pull the required python image
+(in aqc directory)
+```bash
+docker pull python:3.11-slim
+```
 
-#### Evalutation
+#### 2. Build an image and train the model in the image:
+(in aqc directory)
+```bash
+docker build -t aqc-builder .
+docker run -v "$PWD/app":/app -w /app -it aqc-builder python train.py dataset.csv
+```
 
-1. We are going to use following instruction to start your service:
+#### 3. Start the App with Docker Compose
+(in aqc/docker directory)
+```bash
+cd docker
+docker compose up --build
+```
+
+#### 4. Visit the Web Interface
+
+👉 http://localhost:1111/aqc
+
+#### 5. Stop the App When You're Done
+
+```bash
+docker compose down
+```
+#### 6. Tar the project:
+(outside aqc directory)
+```bash
+cd ../../
+tar -czvf aqc.tar.gz aqc/
+```
+
+### App Testing
+
+#### 1. Unpack the tar file
+
+```bash
+tar -xvf aqc.tar.gz
+```
+
+#### 2. Build an image
 
 ```shell
-tar -xvf aqc.tar.gz
 cd aqc
 docker build -t evaluation/aqc .
+```
+
+#### 3. Start docker service:
+
+```shell
 cd docker
 docker compose up -d
 ```
+#### 4. Visit the Web Interface
 
-2. The page for inputting indicators can be opened by opening a browser and going to the following address: http://host:1111/aqc.
-
-3. Enter the indicators for each dimension and click OK to return the predicted results (Good/Moderate/Hazardous/Poor).
-
-4. Access to the container allows the execution of training scripts, as recommended below:
-
-   ```shell
-   docker exec -it aqc /bin/bash
-   python train.py dataset.csv
-   #print F1 score.
-   ```
-
-   
+👉 http://localhost:1111/aqc
