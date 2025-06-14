@@ -79,7 +79,7 @@ docker compose down
 (outside aqc directory)
 ```bash
 cd ../../
-tar -czvf aqc.tar.gz aqc/
+tar -czvf aqc.tar.gz air-quality-classification/
 ```
 
 
