@@ -20,7 +20,7 @@ tar -xvf aqc.tar.gz
 #### 2. Build an image
 
 ```shell
-cd aqc
+cd air-quality-classification
 docker build -t evaluation/aqc .
 ```
 
