@@ -69,11 +69,21 @@ To improve concurrency, I created a shared JobManager and launched 3 worker thre
 
 This shows how multi-worker architecture scales better with job size diversity.
 
+5. Stop servers
 
-5. View plots generated in charts folder
+```bash
+docker stop job-server-task-2
+docker stop job-server-task-3
+```
 
+6. View plots generated in charts folder
 
-
+<p align="center">
+  <img src="https://github.com/HenryCZhang/coding-tasks/blob/main/job-scheduler/charts/task_2_2.png"  width="full" alt="task_2_2">
+</p>
+<p align="center">
+  <img src="https://github.com/HenryCZhang/coding-tasks/blob/main/job-scheduler/charts/task_3_2.png"  width="full" alt="task_3_2">
+</p>
 
 #### (Option 2: Run Locally with python VENV)
 
